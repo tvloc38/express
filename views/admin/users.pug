@@ -1,0 +1,23 @@
+extends ../layouts/common.pug
+
+block content   
+    h1.d-flex.align-items-center
+        span.mr-3 User List
+        a.btn.btn-primary(href="/users/add") New User
+    table.table
+            tr
+                th Avatar
+                th Name
+                th username
+                th Delete
+                th Update
+            each user in users
+                tr
+                    td
+                        img(src=user.avatar width="48")
+                    td= user.name
+                    td= user.username
+                    td
+                        a.btn.btn-light(href="/users/" +user.id +"/delete") Delete
+                    td 
+                        a.btn.btn-light(href="/users/" +user.id + "/profile") Update

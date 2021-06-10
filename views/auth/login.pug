@@ -1,0 +1,14 @@
+extend ../layouts/common
+
+block content
+  if alert
+    .alert.alert-danger= alert
+  form(action="", method="POST")
+    label email
+    input(type="text", name="email", value= values ? values.email : "")
+    br
+    label password
+    input(type="password", name="password", value= values ? values.password : "")
+    br
+    button Login
+    a(href="/auth/signup") Signup
