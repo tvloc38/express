@@ -1,4 +1,5 @@
 var User = require("../models/user.model")
+// var User = Model.UserModel
 
 module.exports.authRequire = function(req, res, next) {
   if (!req.signedCookies.userId) {
@@ -10,7 +11,6 @@ module.exports.authRequire = function(req, res, next) {
       res.redirect("/auth/login");
       return;
     }
-    console.log(user);
     res.locals.user = user;
     next();
   })

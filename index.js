@@ -9,8 +9,13 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopolo
 var app = express();
 
 var authRoute = require("./routes/auth.route")
+var adminRoute = require("./routes/admin.route")
+var booksRoute = require("./routes/book.route")
+var booksApiRoute = require("./api/routes/book.route")
+
 
 var authMiddleware = require("./middlewares/auth.middleware");
+var adminMiddleware = require("./middlewares/admin.middleware");
 
 app.set("view engine", "pug");
 app.set("views", "./views");
@@ -25,6 +30,9 @@ app.get("/", authMiddleware.authRequire, function(req, res){
 })
 
 app.use("/auth", authRoute)
+app.use("/admin", authMiddleware.authRequire, adminMiddleware.isAdmin, adminRoute)
+app.use("/books", booksRoute)
+app.use("/api/books", booksApiRoute)
 
 app.listen(port, function(){
     console.log("Server listening on port " + port);

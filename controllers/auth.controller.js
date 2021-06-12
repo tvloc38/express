@@ -1,4 +1,5 @@
 var userModel = require("../models/user.model");
+// var userModel = Model.UserModel;
 const cloudinary = require("cloudinary").v2;
 const bcrypt = require('bcrypt');
 
